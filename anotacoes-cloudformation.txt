@@ -1,0 +1,35 @@
+CRIANDO A PRIMEIRA STACK COM AWS CLOUDFORMATION
+
+Ferramenta utilizada na automação de recursos, eliminando a necessidade de criar e gerenciar recursos manualmente.
+Os templates podem ser em JSON ou YAML e são reutilizáveis e versionáveis.
+
+Conceitos principais:
+- Template -> CloudFormation -> Stack
+- Template: arquivo JSON/YAML com definição dos recursos (EC2, S3, IAM, Security Groups, etc).
+- Stack: instância criada a partir do template.
+- ChangeSet: pré-visualização de alterações antes de aplicar.
+
+Chaves comuns em um template S3:
+- DeletionPolicy: política que define se os dados do bucket serão retidos ou excluídos.
+- AccessControl: define o modo de acesso (ex: Private).
+- LifecycleConfiguration: regras para mover/remover objetos após X dias.
+
+HANDS-ON (resumo dos templates usados no laboratório):
+- Template 01 (01-EC2.yaml): cria uma instância EC2 com uma AMI. Atenção para tipo de instância (t2.micro pode precisar ser alterado para t3.micro na conta Free Tier, como no meu caso).
+- Template 02 (02-Apache.yaml): instala e configura o servidor Apache na EC2.
+- Template 03 (03-Firewall.yaml): configura regras de firewall (Security Group) para permitir acesso HTTP/SSH conforme necessário.
+
+Fluxo de criação de Stack:
+1. Acesse CloudFormation -> Create stack -> Choose template (upload file ou use URL).  
+2. Preencha os parâmetros necessários (nome da stack, tipo de instância, key pair, etc).  
+3. Revisar e criar.  
+4. Acompanhar eventos da stack para validar criação dos recursos.  
+5. Validar no console os recursos (EC2, S3, IAM, Security Groups).
+
+Boas práticas:
+- Validar templates JSON/YAML antes de criar a stack (AWS Console tem opção de validação).
+- Usar DeletionPolicy para proteger dados importantes em buckets S3.
+- Versionar templates em um repositório Git.
+- Em ambientes de homologação, agendar snapshots/backups com periodicidade menor (se necessário).
+- Evitar executar templates de produção sem testes em ambiente isolado.
+
