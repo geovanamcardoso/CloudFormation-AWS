@@ -15,9 +15,9 @@ Chaves comuns em um template S3:
 - LifecycleConfiguration: regras para mover/remover objetos após X dias.
 
 HANDS-ON (resumo dos templates usados no laboratório):
-- Template 01 (01-EC2.yaml): cria uma instância EC2 com uma AMI. Atenção para tipo de instância (t2.micro pode precisar ser alterado para t3.micro na conta Free Tier, como no meu caso).
+- Template 01 (01-EC2.yaml): cria uma instância EC2 com uma AMI. Atenção para tipo de instância (t2.micro, que estava no arquivo original do laboratório, precisou ser alterado para t3.micro na conta Free Tier, no meu caso).
 - Template 02 (02-Apache.yaml): instala e configura o servidor Apache na EC2.
-- Template 03 (03-Firewall.yaml): configura regras de firewall (Security Group) para permitir acesso HTTP/SSH conforme necessário.
+- Template 03 (03-Firewall.yaml): configura regras de firewall (Security Group) para liberar porta 80.
 
 Fluxo de criação de Stack:
 1. Acesse CloudFormation -> Create stack -> Choose template (upload file ou use URL).  
