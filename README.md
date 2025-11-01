@@ -15,26 +15,37 @@ Vantagens:
 - Automação e repetibilidade da infraestrutura;  
 - Versionamento de templates;  
 - Redução de erros manuais;  
-- Integração com outros fluxos CI/CD.
+- Integração com outros fluxos CI/CD;
+- Padronização da infraestrutura e melhor previsibilidade de custos;
+- Maior segurança por meio de políticas e regras de acesso configuradas no código.
 
 Principais termos:
 - **Template:** arquivo YAML/JSON que descreve recursos.  
 - **Stack:** instância criada a partir do template.  
-- **Change Set:** pré-visualização de mudanças antes de aplicar.  
+- **Change Set:** pré-visualização de mudanças antes de aplicar.
+
+Outros pontos importantes:
+- O YAML é mais utilizado por ser mais simples e legível que JSON.
+- Os templates podem ser reutilizados e versionados quantas vezes for necessário.
+- Pagamos apenas pelos recursos criados (stacks) e não pela execução do CloudFormation.
+- Antes de executar, é essencial definir o desenho da arquitetura (quais recursos serão criados).
+- Além do CloudFormation, existem outras ferramentas de IaC como PowerShell, Terraform e AWS SDK.
 
 ---
-
-## Anotações da Prática (resumo)
-
-- CloudFormation usa **YAML ou JSON** para descrever recursos.  
-- Templates são reutilizáveis e podem ser versionados.  
-- Pagamos pelos recursos criados (stacks), não pela execução do template em si.  
-- Antes de executar, definir o desenho da arquitetura (quais recursos serão criados).
 
 Campos comuns em um template S3 (exemplo):
 - **DeletionPolicy:** política para reter ou remover objetos do bucket.  
 - **AccessControl:** define o modo de acesso (ex: Private).  
 - **LifecycleConfiguration:** regras de ciclo de vida (mover ou remover objetos após X dias).
+
+## Diferença entre CloudFormation e Terraform
+
+| Ferramenta | Características principais |
+|-------------|-----------------------------|
+| **AWS CloudFormation** | Ferramenta nativa e exclusiva da AWS. Ideal para quem utiliza apenas os serviços da Amazon. Permite automatizar, versionar e gerenciar recursos dentro do ecossistema AWS. |
+| **Terraform** | Ferramenta *multicloud*, ou seja, suporta diferentes provedores (AWS, Azure, GCP, entre outros). É mais versátil para ambientes híbridos e facilita migrações entre nuvens. |
+
+
 
 HANDS-ON (passos principais):
 1. Criar template (YAML/JSON) ou usar template pronto.  
@@ -47,6 +58,7 @@ Observações do laboratório:
 - No Template 1: cria uma EC2 com imagem (tive que trocar t2.micro para t3.micro por estar usando uma conta Free Tier).  
 - Template 2: instala Apache na EC2.  
 - Template 3: configura regras de firewall (security group).
+- Exemplo adicional: LAMP STACK -> modelo pronto do AWS que conecta uma EC2 ao MySQL, demonstrando uma aplicação web completa provisionada automaticamente.
 
 ---
 
