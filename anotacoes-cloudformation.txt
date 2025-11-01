@@ -1,13 +1,22 @@
 CRIANDO A PRIMEIRA STACK COM AWS CLOUDFORMATION
 
 Ferramenta utilizada na automação de recursos, eliminando a necessidade de criar e gerenciar recursos manualmente.
-Os templates podem ser em JSON ou YAML e são reutilizáveis e versionáveis.
+Os templates podem ser em JSON ou YAML e são reutilizáveis, versionáveis e permitem automatizar o provisionamento de infraestrutura.  
+O YAML é o formato mais utilizado por ser mais simples e legível.
 
 Conceitos principais:
 - Template -> CloudFormation -> Stack
 - Template: arquivo JSON/YAML com definição dos recursos (EC2, S3, IAM, Security Groups, etc).
 - Stack: instância criada a partir do template.
 - ChangeSet: pré-visualização de alterações antes de aplicar.
+
+Benefícios:
+- Automatização e repetibilidade da infraestrutura.
+- Redução de erros manuais.
+- Padronização entre ambientes.
+- Melhor previsibilidade de custos.
+- Aumento da segurança com políticas e regras de acesso.
+- Integração com pipelines CI/CD e controle de versões.
 
 Chaves comuns em um template S3:
 - DeletionPolicy: política que define se os dados do bucket serão retidos ou excluídos.
@@ -18,6 +27,7 @@ HANDS-ON (resumo dos templates usados no laboratório):
 - Template 01 (01-EC2.yaml): cria uma instância EC2 com uma AMI. Atenção para tipo de instância (t2.micro, que estava no arquivo original do laboratório, precisou ser alterado para t3.micro na conta Free Tier, no meu caso).
 - Template 02 (02-Apache.yaml): instala e configura o servidor Apache na EC2.
 - Template 03 (03-Firewall.yaml): configura regras de firewall (Security Group) para liberar porta 80.
+- - Exemplo adicional: LAMP Stack — modelo pronto da AWS que conecta uma instância EC2 a um banco MySQL, demonstrando uma aplicação web provisionada automaticamente.
 
 Fluxo de criação de Stack:
 1. Acesse CloudFormation -> Create stack -> Choose template (upload file ou use URL).  
@@ -33,3 +43,6 @@ Boas práticas:
 - Em ambientes de homologação, agendar snapshots/backups com periodicidade menor (se necessário).
 - Evitar executar templates de produção sem testes em ambiente isolado.
 
+Diferença entre CloudFormation e Terraform:
+- AWS CloudFormation: ferramenta nativa e exclusiva da AWS, ideal para quem utiliza apenas serviços da Amazon.
+- Terraform: ferramenta multicloud (suporta AWS, Azure, GCP, etc.), mais versátil para ambientes híbridos e migrações entre nuvens.
